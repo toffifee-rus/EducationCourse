@@ -1,0 +1,14 @@
+C:\Users\admin\C sharp projects\sort\sort\bin\Debug\net8.0\sort.exe
+C:\Users\admin\C sharp projects\sort\sort\bin\Debug\net8.0\sort.deps.json
+C:\Users\admin\C sharp projects\sort\sort\bin\Debug\net8.0\sort.runtimeconfig.json
+C:\Users\admin\C sharp projects\sort\sort\bin\Debug\net8.0\sort.dll
+C:\Users\admin\C sharp projects\sort\sort\bin\Debug\net8.0\sort.pdb
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.AssemblyInfoInputs.cache
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.AssemblyInfo.cs
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.csproj.CoreCompileInputs.cache
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.dll
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\refint\sort.dll
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.pdb
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\sort.genruntimeconfig.cache
+C:\Users\admin\C sharp projects\sort\sort\obj\Debug\net8.0\ref\sort.dll
