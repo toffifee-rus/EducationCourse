@@ -1,0 +1,15 @@
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.AssemblyInfoInputs.cache
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.AssemblyInfo.cs
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.csproj.CoreCompileInputs.cache
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.sourcelink.json
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\bin\Debug\net8.0\Dictionary.exe
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\bin\Debug\net8.0\Dictionary.deps.json
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\bin\Debug\net8.0\Dictionary.runtimeconfig.json
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\bin\Debug\net8.0\Dictionary.dll
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\bin\Debug\net8.0\Dictionary.pdb
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.dll
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\refint\Dictionary.dll
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.pdb
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\Dictionary.genruntimeconfig.cache
+C:\Users\admin\C sharp projects\Dictionary\Dictionary\obj\Debug\net8.0\ref\Dictionary.dll
