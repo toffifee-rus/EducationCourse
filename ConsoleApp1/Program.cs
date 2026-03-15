@@ -1,12 +1,12 @@
 ﻿namespace Task1
 {
     /// <summary>
-    /// Выводит информацию о кастомном атрибуте
+    /// Задание 1
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Задание 1
+        /// Выводит информацию о кастомном атрибуте
         /// </summary>
         static void Main()
         {

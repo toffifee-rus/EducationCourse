@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// Исключение о запрете доступа

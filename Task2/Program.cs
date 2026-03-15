@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// Задание 2
@@ -11,8 +11,9 @@
         /// <param name="args">Целое число</param>
         static void Main(string[] args)
         {
-            Person person = new Person();
-            person.Age = Convert.ToInt32(args[0]);
+            PrintAttribute task2 = new PrintAttribute();
+            task2.PrintMyAttributeData();
+            Console.WriteLine(Input.Person);
         }
     }
 }

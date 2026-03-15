@@ -1,4 +1,4 @@
-﻿namespace task2
+﻿namespace Task2
 {
     /// <summary>
     /// Класс пользователя
@@ -10,6 +10,8 @@
         /// <summary>
         /// Возраст
         /// </summary>
+        public string Name { get; set; }
+
         public int Age
         {
             get
