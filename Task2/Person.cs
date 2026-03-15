@@ -6,7 +6,7 @@
     public class Person
     {
         private int _age = 0;
-
+        private static int _count = 0;
         /// <summary>
         /// Возраст
         /// </summary>
@@ -24,9 +24,11 @@
             }
             set
             {
+                
                 if (value < 18)
                 {
-                    throw new AccessException("001");
+                    _count++;
+                    throw new AccessException((_count).ToString());
                 }
                 else
                 {

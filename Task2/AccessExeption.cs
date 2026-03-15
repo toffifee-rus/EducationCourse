@@ -9,7 +9,7 @@
         /// Исключение о запрете доступа
         /// </summary>
         /// <param name="txId">Id исключения</param>
-        public AccessException(string txId) : base("Пользователь должен быть старше 18 лет " + txId)
+        public AccessException(string txId) : base("Пользователь должен быть старше 18 лет")
         {
             TransactionId = txId;
         }

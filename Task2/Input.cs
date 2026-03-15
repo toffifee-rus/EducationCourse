@@ -48,7 +48,7 @@ namespace Task2
                     }
                     catch (AccessException ex)
                     {
-                        Console.WriteLine($"Пропущен: {i["Name"]} (Ошибка: {ex.Message})");
+                        Console.WriteLine($"Пропущен: {i["Name"]} (Ошибка: {ex.TransactionId})");
                     }
                 }
             }
