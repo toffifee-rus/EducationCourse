@@ -24,7 +24,7 @@
             }
             set
             {
-                
+
                 if (value < 18)
                 {
                     _count++;

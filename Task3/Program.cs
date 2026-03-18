@@ -1,13 +1,11 @@
-﻿using Task3;
-
-namespace task3
+﻿namespace Task3
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
             Console.WriteLine(StaticTest.Counter);
-            Console.WriteLine(TestPlus(StaticTest.Counter));
+            Console.WriteLine(StaticTest.TestPlus(StaticTest.Counter));
         }
     }
 }
