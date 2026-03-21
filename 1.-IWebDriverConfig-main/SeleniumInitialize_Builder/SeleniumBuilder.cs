@@ -44,7 +44,7 @@ namespace SeleniumInitialize_Builder
 
             if (Timeout != TimeSpan.Zero)
             {
-                WebDriver.Manage().Timeouts().ImplicitWait = Timeout;
+                WebDriver.Manage().Timeouts().ImplicitWait = this.Timeout;
             }
 
             if (!string.IsNullOrEmpty(StartingURL))
