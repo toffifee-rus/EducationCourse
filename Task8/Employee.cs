@@ -44,7 +44,7 @@
         /// </summary>
         public override void GetInfo()
         {
-            Console.WriteLine($"Менеджер {Name}, размер команды - {Wards}");
+            Console.WriteLine($"Менеджер {Name}, подопечные сотрудники - {Wards}");
         }
     }
 
