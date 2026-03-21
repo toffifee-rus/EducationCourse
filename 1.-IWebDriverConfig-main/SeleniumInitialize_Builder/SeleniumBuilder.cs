@@ -7,6 +7,7 @@ namespace SeleniumInitialize_Builder
     public class SeleniumBuilder : IDisposable
     {
         private IWebDriver WebDriver { get; set; }
+        public bool IsHeadless { get; set; }
         public int Port { get; private set; }
         public bool IsDisposed { get; private set; }
         public List<string> ChangedArguments { get; private set; }
@@ -71,6 +72,13 @@ namespace SeleniumInitialize_Builder
             //Изменить свойство Port на тот порт, на который поменяли.
             //Builder в данном методе должен возвращать сам себя
             this.Port = port;
+            return this;
+        }
+
+        public SeleniumBuilder HeadlessMode()
+        {
+            IsHeadless = true;
+            this.SetArgument("--headless=new");
             return this;
         }
 

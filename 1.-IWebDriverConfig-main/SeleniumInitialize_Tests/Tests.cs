@@ -30,7 +30,7 @@ namespace SeleniumInitialize_Tests
             var processes = Process.GetProcessesByName("chromedriver");
             Assert.IsFalse(processes.Any());
         }
-        
+
         [Test(Description = "Проверка изменения таймаута")]
         public void TimeoutTest()
         {
@@ -38,6 +38,15 @@ namespace SeleniumInitialize_Tests
             IWebDriver driver = _builder.WithTimeout(timeout).Build();
             Assert.That(driver.Manage().Timeouts().ImplicitWait, Is.EqualTo(timeout));
             Assert.That(_builder.Timeout, Is.EqualTo(timeout));
+        }
+
+        [Test(Description = "Проверка запуска в headless режиме")]
+        public void HeadlessTest()
+        {
+            _builder.HeadlessMode();
+            IWebDriver driver = _builder.Build();
+            Assert.IsTrue(_builder.IsHeadless);
+            Thread.Sleep(5000);
         }
 
         [TearDown]
