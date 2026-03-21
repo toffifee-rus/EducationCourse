@@ -14,7 +14,7 @@ namespace Task6
         static void Main(string[] args)
         {
             Initialize init = new Initialize();
-            init.ShowStats();
+            init.ShowData();
         }
     }
 }
