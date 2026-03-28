@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.DevTools.V119.DOMSnapshot;
 
 namespace SeleniumInitialize_Builder
 {
@@ -20,7 +19,6 @@ namespace SeleniumInitialize_Builder
             //Создать экземпляр драйвера, присвоить получившийся результат переменной WebDriver, вернуть в качестве результата данного метода.
             var options = new ChromeOptions();
             var service = ChromeDriverService.CreateDefaultService();
-
 
             if (Port > 0)
             {
@@ -51,9 +49,6 @@ namespace SeleniumInitialize_Builder
             {
                 WebDriver.Navigate().GoToUrl(StartingURL);
             }
-
-
-
             return WebDriver;
         }
 
@@ -114,7 +109,6 @@ namespace SeleniumInitialize_Builder
             //Отслеживать изменения в свойстве Timeout
             //Builder возвращает себя
             this.Timeout = timeout;
-
             return this;
         }
 

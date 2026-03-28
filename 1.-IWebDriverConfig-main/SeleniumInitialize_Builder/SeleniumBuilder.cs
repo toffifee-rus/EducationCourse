@@ -21,7 +21,6 @@ namespace SeleniumInitialize_Builder
             var options = new ChromeOptions();
             var service = ChromeDriverService.CreateDefaultService();
 
-
             if (Port > 0)
             {
                 service.Port = this.Port;
@@ -51,9 +50,6 @@ namespace SeleniumInitialize_Builder
             {
                 WebDriver.Navigate().GoToUrl(StartingURL);
             }
-
-
-
             return WebDriver;
         }
 
@@ -114,7 +110,6 @@ namespace SeleniumInitialize_Builder
             //Отслеживать изменения в свойстве Timeout
             //Builder возвращает себя
             this.Timeout = timeout;
-
             return this;
         }
 

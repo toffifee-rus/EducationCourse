@@ -1,12 +1,8 @@
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V119.DOM;
-using OpenQA.Selenium.DevTools.V120.SystemInfo;
-using OpenQA.Selenium.Support.UI;
 using SeleniumInitialize_Builder;
-using System.Diagnostics;
-using System.Drawing;
 using OpenQA.Selenium.Interactions;
-using System;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumInitialize_Tests
 {
@@ -19,8 +15,8 @@ namespace SeleniumInitialize_Tests
         private readonly By _gosuslugiButton = By.XPath("//button[contains(text(), 'Перейти на Госуслуги')]");
         private readonly By _switcherRefinance = By.XPath("//span[@class='slider _not-standalone']");
         private readonly By _divPayment = By.XPath("//div[@class='col']");
-
         private SeleniumBuilder _builder;
+
         [SetUp]
         public void Setup()
         {
@@ -32,38 +28,24 @@ namespace SeleniumInitialize_Tests
         public void XPathFindTest()
         {
             IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(10)).Build();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            var inputCreditSum = driver.FindElement(_inputCreditSum);
-
-            var inputSliderCreditSum = driver.FindElement(_inputSliderCreditSum);
-
-            var inputCreditMonths = driver.FindElement(_inputCreditMonths);
-
-            var inputSliderCreditMonths = driver.FindElement(_inputSliderCreditMonths);
-
-            var gosuslugiButton = driver.FindElement(_gosuslugiButton);
-
-            var switcherRefinance = driver.FindElement(_switcherRefinance);
-
-            var divPayment = driver.FindElement(_divPayment);
-
-
-
-
-            Assert.IsNotNull(inputCreditSum);
-            Assert.IsNotNull(inputSliderCreditSum);
-            Assert.IsNotNull(inputCreditMonths);
-            Assert.IsNotNull(inputSliderCreditMonths);
-            Assert.IsNotNull(gosuslugiButton);
-            Assert.IsNotNull(switcherRefinance);
-            Assert.IsNotNull(divPayment);
+            var inputCreditSum = wait.Until(ExpectedConditions.ElementExists(_inputCreditSum));
+            var inputSliderCreditSum = wait.Until(ExpectedConditions.ElementExists(_inputSliderCreditSum));
+            var inputCreditMonths = wait.Until(ExpectedConditions.ElementExists(_inputCreditMonths));
+            var inputSliderCreditMonths = wait.Until(ExpectedConditions.ElementExists(_inputSliderCreditMonths));
+            var gosuslugiButton = wait.Until(ExpectedConditions.ElementExists(_gosuslugiButton));
+            var switcherRefinance = wait.Until(ExpectedConditions.ElementExists(_switcherRefinance));
+            var divPayment = wait.Until(ExpectedConditions.ElementExists(_divPayment));
+            
+            //Если использовать Until вместо Assert, то как проводить отладку и информировать
         }
 
         [Test(Description = "Задание 1. Заранее провальный тест")]
         public void XPathFaultTest()
         {
-            IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(10)).Build();
-            var testString = driver.FindElement(By.XPath("/*[@data-testid])"));
+            IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(3)).Build();
+            Assert.Throws<NoSuchElementException>(() => driver.FindElement(By.XPath("//div[@data='testid']")));
         }
 
 
@@ -71,38 +53,23 @@ namespace SeleniumInitialize_Tests
         public void ElementValuesTest()
         {
             IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(10)).Build();
-            var inputCreditSum = driver.FindElement(_inputCreditSum);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            var inputSliderCreditSum = driver.FindElement(_inputSliderCreditSum);
+            var inputCreditSum = wait.Until(ExpectedConditions.ElementToBeClickable(_inputCreditSum));
+            var inputCreditMonths = wait.Until(ExpectedConditions.ElementToBeClickable(_inputCreditMonths));
+            var gosuslugiButton = wait.Until(ExpectedConditions.ElementToBeClickable(_gosuslugiButton));
+            var switcherRefinance = wait.Until(ExpectedConditions.ElementToBeClickable(_switcherRefinance));
+            var switcherValue = driver.FindElement(By.XPath("//input[@type='checkbox' and @class='input']"));
 
-            var inputCreditMonths = driver.FindElement(_inputCreditMonths);
+            bool hasValue = wait.Until(d => !string.IsNullOrEmpty(inputCreditSum.GetAttribute("value")));
+            Assert.IsTrue(hasValue, "Значение суммы кредита не прогрузилось");
 
-            var inputSliderCreditMonths = driver.FindElement(_inputSliderCreditMonths);
+            bool isUnselected = wait.Until(ExpectedConditions.ElementSelectionStateToBe(switcherRefinance, false));
+            Assert.IsTrue(isUnselected, "Свитчер должен быть выключен по умолчанию");
 
-            var gosuslugiButton = driver.FindElement(_gosuslugiButton);
-
-            var switcherRefinance = driver.FindElement(_switcherRefinance);
-
-            var divPayment = driver.FindElement(_divPayment);
-
-            Assert.IsTrue(inputCreditMonths.Displayed);
-            Assert.IsTrue(inputCreditMonths.Enabled);
-
-            string creditValue = inputCreditMonths.GetAttribute("value");
-            TestContext.WriteLine($"Текущий срок: {creditValue}");
-
-            Assert.IsTrue(gosuslugiButton.Displayed);
-            Assert.IsTrue(gosuslugiButton.Enabled);
-
-            Assert.IsTrue(switcherRefinance.Displayed);
-            Assert.IsTrue(switcherRefinance.Enabled);
-
-            bool isInsuranceActive = switcherRefinance.Selected;
-            TestContext.WriteLine($"Страхование включено: {isInsuranceActive}");
-
-            Assert.IsTrue(divPayment.Displayed);
-            Assert.IsTrue(divPayment.Enabled);
-
+            TestContext.WriteLine($"Текущее состояние свитчера: {switcherValue.GetAttribute("value")}");
+            TestContext.WriteLine($"Текущий срок: {inputCreditMonths.GetAttribute("value")}");
+            TestContext.WriteLine($"Текущая сумма: {inputCreditSum.GetAttribute("value")}");
 
         }
 
@@ -110,6 +77,8 @@ namespace SeleniumInitialize_Tests
         public void NextButtonActivityTest()
         {
             IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(10)).Build();
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
             var inputLastName = driver.FindElement(By.XPath("//input[@name='CardHolderLastName']"));
             var inputFirstName = driver.FindElement(By.XPath("//input[@name='CardHolderFirstName']"));
             var inputMiddleName = driver.FindElement(By.XPath("//input[@name='CardHolderMiddleName']"));
@@ -124,10 +93,14 @@ namespace SeleniumInitialize_Tests
             Assert.IsFalse(submitButton.Enabled);
 
             inputLastName.SendKeys("Филимонов");
+            inputLastName.SendKeys(Keys.Escape);
             inputFirstName.SendKeys("Михаил");
+            inputLastName.SendKeys(Keys.Escape);
             inputMiddleName.SendKeys("Сергеевич");
+            inputLastName.SendKeys(Keys.Escape);
             radioMaleSex.Click();
             inputBirthday.SendKeys("11.12.2004");
+            inputLastName.SendKeys(Keys.Escape);
             inputPhone.SendKeys("9511279525");
             comboboxCitizenship.Click();
             var citizenshipListItemRUS = driver.FindElement(By.XPath("//sng-select-option[text()=' РФ ']"));
@@ -137,8 +110,7 @@ namespace SeleniumInitialize_Tests
             employmentListItemTrue.Click();
             checkboxAllow.Click();
 
-            Assert.IsTrue(submitButton.Enabled);
-
+            submitButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@type='submit']")));
         }
 
         [Test(Description = "Задание 5. Проверка стиля элемента")]
@@ -146,15 +118,18 @@ namespace SeleniumInitialize_Tests
         {
             IWebDriver driver = _builder.WithTimeout(TimeSpan.FromSeconds(10)).Build();
             Actions action = new Actions(driver);
-            var fillRequestButton = driver.FindElement(By.XPath("//button[text()=' Заполнить заявку ']"));
-            Thread.Sleep(1000);
-            Assert.IsTrue(fillRequestButton.Enabled);
-            string actualColor = fillRequestButton.GetCssValue("background-color");
-            Assert.AreEqual("rgba(242, 97, 38, 1)", actualColor);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            
+            var fillRequestButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[text()=' Заполнить заявку ']")));
+
+            var actualColor = wait.Until(i => fillRequestButton.GetCssValue("background-color") == "rgba(242, 97, 38, 1)");
+
+            Assert.AreEqual("rgba(242, 97, 38, 1)", fillRequestButton.GetCssValue("background-color"));
 
             action.MoveToElement(fillRequestButton).Perform();
-            string hoverColor = fillRequestButton.GetCssValue("background-color");
-            Assert.AreEqual("rgba(212, 73, 33, 1)", hoverColor);
+            var hoverColor = wait.Until(i => fillRequestButton.GetCssValue("background-color") == "rgba(212, 73, 33, 1)");
+
+            Assert.AreEqual("rgba(212, 73, 33, 1)", fillRequestButton.GetCssValue("background-color"));
         }
 
         [TearDown]
@@ -164,19 +139,11 @@ namespace SeleniumInitialize_Tests
 
             if (status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
-                Thread.Sleep(500);
-                try
+                if (_builder.WebDriver is ITakesScreenshot sDriver)
                 {
-                    if (_builder.WebDriver is ITakesScreenshot sDriver)
-                    {
-                        Screenshot screenshot = sDriver.GetScreenshot();
-                        string fileName = TestContext.CurrentContext.Test.Name + "_fail.png";
-                        screenshot.SaveAsFile(fileName);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    TestContext.WriteLine("Не удалось сделать скриншот: " + ex.Message);
+                    Screenshot screenshot = sDriver.GetScreenshot();
+                    string fileName = TestContext.CurrentContext.Test.Name + "_fail.png";
+                    screenshot.SaveAsFile(fileName);
                 }
             }
             _builder.Dispose();

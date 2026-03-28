@@ -7,6 +7,7 @@ namespace SeleniumInitialize_Tests
     public class Tests
     {
         private SeleniumBuilder _builder;
+
         [SetUp]
         public void Setup()
         {
@@ -46,7 +47,6 @@ namespace SeleniumInitialize_Tests
             _builder.HeadlessMode();
             IWebDriver driver = _builder.Build();
             Assert.IsTrue(_builder.IsHeadless);
-            Thread.Sleep(5000);
         }
 
         [TearDown]
