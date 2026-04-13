@@ -1,5 +1,3 @@
-using SeleniumExtras.WaitHelpers;
-using SeleniumInitialize_Builder;
 using SeleniumInitialize_Tests.Pages;
 
 namespace SeleniumInitialize_Tests.Tests
@@ -12,10 +10,13 @@ namespace SeleniumInitialize_Tests.Tests
         {
             CashBackPage cashBackPage = new CashBackPage(_driver);
             cashBackPage.Open();
-            cashBackPage.CategoryClick();
-            cashBackPage.CinemaClick();
-            cashBackPage.PublicTransportClick();
-            cashBackPage.SelectClick();
+
+            cashBackPage.CategoryButton.Click();
+
+            cashBackPage.Cinema.Uncheck();
+            cashBackPage.Transport.Check();
+
+            cashBackPage.SelectButton.Click();
         }
 
         [Test(Description = "Метод взаимодействия с элементом выпадающий список")]
@@ -24,23 +25,19 @@ namespace SeleniumInitialize_Tests.Tests
             CashBackPage cashBackPage = new CashBackPage(_driver);
             string expectedValue = "Пушкин";
             cashBackPage.Open();
-            cashBackPage.InputClick();
-            cashBackPage.TypeInput();
-            cashBackPage.PushkinClick();
+
+            cashBackPage.LastName.SelectElementAndClick(expectedValue, "Пу");
             string actualValue = cashBackPage.GetInputValue();
-            Assert.AreEqual(expectedValue, actualValue);
+            Assert.AreEqual(expectedValue, actualValue, "Полученная строка не соответствует ожидаемой");
         }
 
         [Test(Description = "Метод взаимодействия с кнопкой скачивания")]
         public void DownloadTest()
         {
             CashBackPage cashBackPage = new CashBackPage(_driver);
-            string expectedUrl = "qpstorage/psb/images/yc_short_tarifs.pdf";
             cashBackPage.Open();
-            cashBackPage.CashBackClick();
-            cashBackPage.SwitchTab(1);
-            _wait.Until(ExpectedConditions.UrlContains(expectedUrl));
-            Assert.AreEqual("https://www.psbank.ru/qpstorage/psb/images/yc_short_tarifs.pdf", cashBackPage.GetCurrentUrl());
+            cashBackPage.OpenInNewTab();
+            cashBackPage.Assert.UrlAssert(cashBackPage.GetCurrentUrl());
         }
     }
 }

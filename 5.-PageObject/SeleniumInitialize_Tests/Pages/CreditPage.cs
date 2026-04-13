@@ -6,16 +6,18 @@ using SeleniumInitialize_Tests.Elements;
 namespace SeleniumInitialize_Tests.Pages
 {
     /// <summary>
-    /// Страница кешбэк
+    /// Страница кредита
     /// </summary>
-    public class CashBackPage : BasePage
+    public class CreditPage : BasePage
     {
-        public CashBackPage(IWebDriver driver) : base(driver) { }
+        public CreditPage(IWebDriver driver) : base(driver) { }
 
         private readonly By _comboboxCitizenship = By.XPath("//label[text() = 'Гражданство']/following-sibling::textarea");
         private readonly By _citizenshipListItemRUS = By.XPath("//sng-select-option[text()=' РФ ']");
+        private readonly By _comboboxEmployment = By.XPath("//label[text() = 'Официальное трудоустройство']/following-sibling::textarea");
+        private readonly By _employmentListItemHave = By.XPath("//sng-select-option[text() = ' Есть ']");
 
-        public string Url = "https://ib.psbank.ru/store/products/your-cashback-new";
+        public string Url = "https://ib.psbank.ru/store/products/credit-limit";
 
         public CheckBox MaleCheckBox => new CheckBox(_driver, By.XPath("//input[@title='Мужской']"));
         public CheckBox FemaleCheckBox => new CheckBox(_driver, By.XPath("//input[@title='Женский']"));
@@ -55,6 +57,7 @@ namespace SeleniumInitialize_Tests.Pages
 
             SelectGender(user.Gender);
             SelectItemRF();
+            SelectItemHave();
 
             ContinueButton.Click();
         }
@@ -65,20 +68,33 @@ namespace SeleniumInitialize_Tests.Pages
         /// <param name="gender"></param>
         public void SelectGender(string gender)
         {
-            CheckBox genderLocator = new (_driver, By.XPath($"//input[@title='{gender}']"));
+
+            CheckBox genderLocator = new(_driver, By.XPath($"//input[@title='{gender}']"));
 
             genderLocator.Check();
         }
 
         /// <summary>
-        /// Выбор предмета РФ из комбобокса
+        /// Выбор предмета "РФ" в комбобоксе
         /// </summary>
         /// <returns></returns>
-        public CashBackPage SelectItemRF()
+        public CreditPage SelectItemRF()
         {
             _wait.Until(ExpectedConditions.ElementToBeClickable(_comboboxCitizenship)).Click();
-            _wait.Until(ExpectedConditions.ElementToBeClickable(_citizenshipListItemRUS)).Click();
 
+            _wait.Until(ExpectedConditions.ElementToBeClickable(_citizenshipListItemRUS)).Click();
+            return this;
+        }
+
+        /// <summary>
+        /// Выбор предмета "Есть" в комбобоксе
+        /// </summary>
+        /// <returns></returns>
+        public CreditPage SelectItemHave()
+        {
+            _wait.Until(ExpectedConditions.ElementToBeClickable(_comboboxEmployment)).Click();
+
+            _wait.Until(ExpectedConditions.ElementToBeClickable(_employmentListItemHave)).Click();
             return this;
         }
     }

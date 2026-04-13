@@ -37,8 +37,6 @@ namespace SeleniumInitialize_Tests
             var gosuslugiButton = wait.Until(ExpectedConditions.ElementExists(_gosuslugiButton));
             var switcherRefinance = wait.Until(ExpectedConditions.ElementExists(_switcherRefinance));
             var divPayment = wait.Until(ExpectedConditions.ElementExists(_divPayment));
-            
-            //Если использовать Until вместо Assert, то как проводить отладку и информировать
         }
 
         [Test(Description = "Задание 1. Заранее провальный тест")]

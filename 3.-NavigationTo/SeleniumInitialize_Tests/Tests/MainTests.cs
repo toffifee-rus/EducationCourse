@@ -24,6 +24,7 @@ namespace SeleniumInitialize_Tests.Tests
             mainPage.Open();
             _wait.Until(d => mainPage.IsBannerDisplayed());
             Assert.IsTrue(mainPage.IsBannerDisplayed());
+            // джава скрипт полная прогрузка страниц
         }
 
         [Test(Description = "Задача 3 Проверить переход по ссылке внутри элемента")]
